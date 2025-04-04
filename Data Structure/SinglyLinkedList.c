@@ -1,4 +1,4 @@
-#include <stdio.h> //24-3-25 exp-7
+#include <stdio.h> 
 #include <stdlib.h>
 typedef struct Node
 {
