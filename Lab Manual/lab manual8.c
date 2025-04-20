@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>//8 exp date:7 april
 #include <stdlib.h>
 
 struct Node
@@ -53,16 +53,15 @@ void insertNodeAtEnd(int ele)
 
 void insertAtAnyPosition(int ele, int pos)
 {
-    if (head == NULL)
+    if(head == NULL)
         printf("List is empty!!!\n");
 
-    else if (pos == 1)
-    {
+    else if (pos == 1){
         insertNodeinBeg(ele);
     }
     else
     {
-        struct Node *newNode = createNode(ele);
+        struct Node* newNode = createNode(ele);
         struct Node *temp = head;
         int i = 1;
 
@@ -109,15 +108,12 @@ void deleteNodeFromEnd()
     {
         struct Node *temp = head;
         while (temp->next != NULL)
-        {
             temp = temp->next;
-        }
-        struct Node *t = temp;
         if (temp->prev != NULL)
             temp->prev->next = NULL;
         else
             head = NULL;
-        free(t);
+        free(temp);
         printf("Node deleted from the end!\n");
     }
 }
@@ -153,8 +149,20 @@ void deleteNodeFromAnyPosition(int pos)
         }
     }
 }
-
-
+void search(int target){
+    if(head==NULL)
+    printf("list is empty !!!\n");
+    else{
+        struct Node* temp=head;
+        while(temp !=NULL){
+            if(temp->data==target){
+                printf("element found !!!!\n");
+                return ;
+            }
+        }
+        printf("element not found !!!\n");
+    }
+}
 
 void display()
 {
@@ -162,32 +170,13 @@ void display()
         printf("List is empty!\n");
     else
     {
-        struct Node *temp = head;
+       struct Node *temp = head;
         while (temp != NULL)
         {
             printf("%d ", temp->data);
             temp = temp->next;
         }
         printf("\n");
-    }
-}
-void search(int target)
-{
-    if (head == NULL)
-        printf("List is empty!!\n");
-    else
-    {
-        struct Node *temp = head;
-        while (temp != NULL)
-        {
-            if (temp->data == target)
-            {
-                printf("Found!!\n");
-                return;
-            }
-            temp = temp->next;
-        }
-        printf("Element Not Found!!!\n");
     }
 }
 
@@ -202,8 +191,9 @@ int main()
         printf("4. Delete node from the beginning\n");
         printf("5. Delete node from the end\n");
         printf("6. Delete node from any position\n");
-        printf("7. Display elements\n");
-        printf("8. Exit\n");
+        printf("7.search element in list\n");
+        printf("8. Display elements\n");
+        printf("9. Exit\n");
 
         int choice, value, pos;
         printf("Enter your choice: ");
@@ -240,14 +230,18 @@ int main()
             deleteNodeFromAnyPosition(pos);
             break;
         case 7:
-            display();
-            break;
+        printf("enter the value: ");
+        scanf("%d", &value);
+        break;
         case 8:
-            exit(0);
+        display();
+        break;
+        case 9:
+        exit (0);
         default:
             printf("Invalid choice!\n");
         }
         printf("\n");
     }
-    return 0;
+     return 0;
 }
